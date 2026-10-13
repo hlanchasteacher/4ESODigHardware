@@ -63,7 +63,7 @@ button{font-family:inherit}
 @media(max-width:640px){.shell{padding:0 16px}}
 
 /* ============================================================
-   TOP BAR — corporate identity
+   TOP BAR
    ============================================================ */
 .topbar{background:var(--navy);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
 .topbar__inner{display:flex;align-items:center;gap:24px;padding:14px 0;flex-wrap:wrap}
@@ -96,7 +96,7 @@ button{font-family:inherit}
 @media(max-width:520px){.topbar__user span{display:none}}
 
 /* ============================================================
-   STATUS STRIP (sticky budget tracker)
+   STATUS STRIP
    ============================================================ */
 .status-strip{
   position:sticky;top:0;z-index:50;
@@ -133,7 +133,7 @@ button{font-family:inherit}
 .status-strip.is-over .status-note{color:var(--danger);font-weight:600}
 
 /* ============================================================
-   BUTTONS — flat, corporate
+   BUTTONS
    ============================================================ */
 .btn{
   display:inline-flex;align-items:center;gap:8px;
@@ -156,7 +156,7 @@ button{font-family:inherit}
 @media(max-width:920px){.layout{grid-template-columns:1fr;gap:20px}}
 
 /* ============================================================
-   SIDEBAR — project phases
+   SIDEBAR
    ============================================================ */
 .rail{
   position:sticky;top:96px;
@@ -232,7 +232,7 @@ button{font-family:inherit}
 .callout--info .callout__icon{background:var(--accent)}
 
 /* ============================================================
-   DOCUMENT HEADER (for briefing)
+   DOCUMENT HEADER
    ============================================================ */
 .doc-header{
   background:var(--navy);color:#fff;border-radius:var(--radius);
@@ -259,7 +259,7 @@ button{font-family:inherit}
 /* ============================================================
    STAKEHOLDER CARDS
    ============================================================ */
-.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:8px}
 .profile-card{
   border:1px solid var(--slate-200);border-radius:var(--radius);padding:22px;background:#fff;
   transition:border-color .2s,box-shadow .2s;
@@ -272,7 +272,14 @@ button{font-family:inherit}
   background:var(--slate-100);border:1px solid var(--slate-200);
 }
 .profile-card h4{font-size:.98rem;margin-bottom:2px;font-weight:700}
-.profile-card .role{font-size:.78rem;color:var(--slate-500);margin-bottom:12px;font-weight:500}
+.profile-card .role{font-size:.78rem;color:var(--slate-500);margin-bottom:10px;font-weight:500}
+.profile-card .emp-meta{
+  font-size:.7rem;color:var(--slate-500);font-family:'SF Mono',Consolas,monospace;
+  letter-spacing:.02em;padding:7px 10px;background:var(--slate-50);
+  border:1px solid var(--slate-100);border-radius:4px;margin-bottom:12px;
+  display:flex;flex-direction:column;gap:2px;line-height:1.5;
+}
+.profile-card .emp-meta span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .profile-card .need{font-size:.85rem;color:var(--slate-600);margin:0 0 14px;line-height:1.55}
 .profile-card .tag{
   display:inline-block;margin-top:auto;align-self:flex-start;
@@ -284,7 +291,7 @@ button{font-family:inherit}
 .tag--mob{background:var(--accent-soft);color:var(--accent);border:1px solid #bfdbfe}
 
 /* ============================================================
-   TECHNICAL REFERENCE (crash course)
+   TECHNICAL REFERENCE
    ============================================================ */
 .ref-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
 .ref-chip{
@@ -304,7 +311,20 @@ button{font-family:inherit}
 .ref-body li{margin-bottom:6px}
 
 .check{margin-top:20px;padding:16px 18px;background:var(--slate-50);border-radius:var(--radius-sm);border:1px solid var(--slate-200)}
-.check__q{font-weight:600;margin-bottom:12px;font-size:.88rem;color:var(--slate-900)}
+.check__q{
+  font-weight:600;margin-bottom:12px;font-size:.88rem;color:var(--slate-900);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+}
+.check__q .q-text{flex:1}
+.trial-pill{
+  display:inline-flex;align-items:center;gap:5px;flex-shrink:0;
+  font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px;
+  background:#fff;border:1px solid var(--slate-200);color:var(--slate-500);
+  letter-spacing:.04em;text-transform:uppercase;font-variant-numeric:tabular-nums;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.trial-pill.active{background:var(--warn-soft);border-color:#fde68a;color:var(--warn)}
+.trial-pill.solved{background:var(--ok-soft);border-color:#99f6e4;color:var(--ok)}
 .check__opts{display:flex;flex-direction:column;gap:6px}
 .check-opt{
   text-align:left;padding:10px 13px;border-radius:5px;border:1px solid var(--slate-200);
@@ -314,6 +334,7 @@ button{font-family:inherit}
 .check-opt:hover{border-color:var(--slate-400);color:var(--slate-900)}
 .check-opt.correct{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
 .check-opt.wrong{background:var(--danger-soft);border-color:var(--danger);color:var(--danger)}
+.check-opt:disabled{cursor:default;opacity:.85}
 .check-feedback{margin-top:12px;font-size:.85rem;font-weight:600;display:none}
 .check-feedback.show{display:block}
 .check-feedback.ok{color:var(--ok)}
@@ -363,11 +384,18 @@ button{font-family:inherit}
   font-size:1.3rem;flex-shrink:0;
   background:var(--navy);color:#fff;
 }
+.ws-head__meta{min-width:0;flex:1}
 .ws-head__meta h3{margin:0 0 3px;font-size:1.15rem}
 .ws-head__meta p{margin:0;font-size:.82rem;color:var(--slate-500)}
+.ws-head__id{
+  display:inline-block;font-size:.68rem;color:var(--slate-500);
+  font-family:'SF Mono',Consolas,monospace;letter-spacing:.04em;
+  padding:2px 7px;background:var(--slate-100);border-radius:3px;margin-left:8px;
+  vertical-align:middle;font-weight:500;
+}
 .ws-head__budget{
   margin-left:auto;text-align:right;font-size:.68rem;color:var(--slate-500);
-  text-transform:uppercase;letter-spacing:.08em;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;font-weight:700;flex-shrink:0;
 }
 .ws-head__budget strong{display:block;font-size:1.15rem;color:var(--slate-900);letter-spacing:-.01em;margin-top:2px}
 
@@ -394,7 +422,7 @@ button{font-family:inherit}
 .comp-block__hint{font-size:.75rem;color:var(--slate-400);font-weight:500}
 
 /* ============================================================
-   COMPATIBILITY CHECKLIST
+   COMPATIBILITY
    ============================================================ */
 .compat{
   margin-top:22px;padding:18px 20px;border-radius:var(--radius);
@@ -518,6 +546,17 @@ button{font-family:inherit}
 .report .meta-grid div strong{font-size:12px;color:var(--slate-900)}
 .report .compat-list-report{font-size:11px;color:var(--slate-600);padding-left:16px;margin:4px 0 10px}
 .report .compat-list-report li{margin-bottom:3px}
+.report .emp-line{
+  font-size:10px;color:var(--slate-500);font-family:'SF Mono',Consolas,monospace;
+  letter-spacing:.02em;margin:-4px 0 10px;
+}
+.report .trial-tag{
+  display:inline-block;font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:3px;
+  background:var(--slate-100);color:var(--slate-600);letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;margin-left:6px;
+}
+.report .trial-tag.perfect{background:var(--ok-soft);color:var(--ok)}
+.report .trial-tag.high{background:var(--warn-soft);color:var(--warn)}
 .report .signature{
   margin-top:40px;padding-top:16px;border-top:1px solid var(--slate-200);
   font-size:10px;color:var(--slate-500);display:flex;justify-content:space-between;
@@ -544,9 +583,6 @@ button{font-family:inherit}
 </head>
 <body>
 
-<!-- ============================================================
-     TOP BAR
-     ============================================================ -->
 <header class="topbar">
   <div class="shell topbar__inner">
     <a class="brand" href="#">
@@ -569,9 +605,6 @@ button{font-family:inherit}
   </div>
 </header>
 
-<!-- ============================================================
-     STATUS STRIP
-     ============================================================ -->
 <div class="status-strip" id="statusStrip">
   <div class="shell status-strip__inner">
     <div class="status-metrics">
@@ -589,9 +622,6 @@ button{font-family:inherit}
   <p class="status-note" id="statusNote">Begin your research — the available budget updates in real time.</p>
 </div>
 
-<!-- ============================================================
-     LAYOUT
-     ============================================================ -->
 <div class="shell layout">
   <aside class="rail">
     <div class="rail__head"><span>Project phases</span><strong id="railProgressLabel">0%</strong></div>
@@ -608,9 +638,6 @@ button{font-family:inherit}
   </div>
 </footer>
 
-<!-- ============================================================
-     REPORT MODAL
-     ============================================================ -->
 <div class="report-modal" id="reportModal" hidden>
   <div class="report-modal__toolbar">
     <div class="report-modal__title">
@@ -633,10 +660,8 @@ button{font-family:inherit}
 <script>
 /* ============================================================
    PULSE & PIXEL — IT PROCUREMENT PROJECT
-   Interactive single-file application
    ============================================================ */
 
-/* ---------- CONFIGURATION ---------- */
 const CONFIG = {
   budget: 2500,
   currency: '€',
@@ -644,11 +669,14 @@ const CONFIG = {
   projectRef: 'PP-IT-2025-001'
 };
 
-/* ---------- EMPLOYEE PROFILES ---------- */
+/* ---------- EMPLOYEE PROFILES (with corporate identity) ---------- */
 const PROFILES = [
   {
     id: 'A',
     name: 'Maya Rodríguez',
+    employeeId: 'PP-EMP-0142',
+    department: 'Creative Production',
+    email: 'maya.rodriguez@pulsepixel.eu',
     role: 'Senior Video Editor',
     emoji: '🎬',
     need: 'Cuts 4K footage daily. Requires maximum processing power and RAM to scrub and render timelines without interruptions.',
@@ -665,6 +693,9 @@ const PROFILES = [
   {
     id: 'B',
     name: 'David Chen',
+    employeeId: 'PP-EMP-0087',
+    department: 'Finance & Accounting',
+    email: 'david.chen@pulsepixel.eu',
     role: 'Accountant',
     emoji: '📊',
     need: 'Runs spreadsheets, email and accounting software. Does not require gaming performance — prioritises reliability and cost efficiency.',
@@ -681,6 +712,9 @@ const PROFILES = [
   {
     id: 'C',
     name: 'Aisha Karim',
+    employeeId: 'PP-EMP-0219',
+    department: 'Client Sales — EMEA',
+    email: 'aisha.karim@pulsepixel.eu',
     role: 'Sales Representative / Digital Nomad',
     emoji: '🌍',
     need: 'Works from cafés, airports and client offices. Requires portability and large external storage capacity for client media.',
@@ -812,7 +846,7 @@ function defaultState(){
     student: { name:'', class:'', date:'' },
     builds: {},
     compat: {},
-    crash: { done: [] },
+    crash: { done: [], attempts: {} },   /* attempts: { [topicId]: number } */
     reflection: { hwsw:'', ports:'', strategy:'' }
   };
   PROFILES.forEach(p => {
@@ -1014,9 +1048,14 @@ function renderTeam(host){
   const cards = PROFILES.map(p => `
     <div class="profile-card">
       <div class="profile-card__avatar">${p.emoji}</div>
-      <h4>${p.name}</h4>
-      <div class="role">${p.role}</div>
-      <p class="need">${p.need}</p>
+      <h4>${escapeHTML(p.name)}</h4>
+      <div class="role">${escapeHTML(p.role)}</div>
+      <div class="emp-meta">
+        <span>ID: ${escapeHTML(p.employeeId)}</span>
+        <span>${escapeHTML(p.department)}</span>
+        <span>${escapeHTML(p.email)}</span>
+      </div>
+      <p class="need">${escapeHTML(p.need)}</p>
       <span class="tag ${p.tagClass}">${p.tag}</span>
     </div>
   `).join('');
@@ -1047,7 +1086,7 @@ function renderTeam(host){
 }
 
 /* ============================================================
-   STEP: TECHNICAL REFERENCE
+   STEP: TECHNICAL REFERENCE (with trial tracking)
    ============================================================ */
 let crashIndex = 0;
 
@@ -1060,12 +1099,13 @@ function renderCrash(host){
 
   const topic = CRASH[crashIndex];
   const wasDone = state.crash.done.includes(topic.id);
+  const trialCount = state.crash.attempts[topic.id] || 0;
 
   host.innerHTML = `
     <div class="card">
       <div class="card__eyebrow">03 / Technical Reference</div>
       <h2 class="card__title">Hardware reference material</h2>
-      <p class="card__hint">The following six areas must be addressed in your procurement proposal. Review each one and complete the short check to confirm understanding.</p>
+      <p class="card__hint">The following six areas must be addressed in your procurement proposal. Review each one and complete the short check to confirm understanding. Your number of attempts is recorded.</p>
 
       <div class="ref-nav">${chips}</div>
 
@@ -1074,9 +1114,14 @@ function renderCrash(host){
         ${topic.body}
 
         <div class="check" id="check">
-          <div class="check__q">${topic.quiz.q}</div>
+          <div class="check__q">
+            <span class="q-text">${topic.quiz.q}</span>
+            <span class="trial-pill ${wasDone ? 'solved' : (trialCount > 0 ? 'active' : '')}" id="trialPill">
+              ${wasDone ? '✓ ' : ''}${trialCount === 0 ? 'Not yet attempted' : (trialCount === 1 ? '1 attempt' : trialCount + ' attempts')}
+            </span>
+          </div>
           <div class="check__opts">
-            ${topic.quiz.opts.map((o,i)=>`<button type="button" class="check-opt" data-opt="${i}">${o}</button>`).join('')}
+            ${topic.quiz.opts.map((o,i)=>`<button type="button" class="check-opt" data-opt="${i}" ${wasDone?'disabled':''}>${o}</button>`).join('')}
           </div>
           <div class="check-feedback" id="checkFeedback"></div>
         </div>
@@ -1100,10 +1145,45 @@ function renderCrash(host){
 
   const fb = host.querySelector('#checkFeedback');
   const nextBtn = host.querySelector('[data-next]');
+  const trialPill = host.querySelector('#trialPill');
+  let answeredCorrectly = wasDone;
+
+  function refreshTrialPill(){
+    const n = state.crash.attempts[topic.id] || 0;
+    if (answeredCorrectly){
+      trialPill.className = 'trial-pill solved';
+      trialPill.textContent = '✓ ' + (n === 1 ? '1 attempt' : n + ' attempts');
+    } else if (n > 0){
+      trialPill.className = 'trial-pill active';
+      trialPill.textContent = n === 1 ? '1 attempt' : n + ' attempts';
+    } else {
+      trialPill.className = 'trial-pill';
+      trialPill.textContent = 'Not yet attempted';
+    }
+  }
+
+  // If already done, show the correct answer as resolved
+  if (wasDone){
+    host.querySelectorAll('[data-opt]').forEach(btn => {
+      if (parseInt(btn.dataset.opt, 10) === topic.quiz.correct){
+        btn.classList.add('correct');
+      }
+    });
+    fb.className = 'check-feedback show ok';
+    fb.textContent = '✓ This concept was already completed. ' + topic.quiz.why;
+  }
+
   host.querySelectorAll('[data-opt]').forEach(btn => {
     btn.addEventListener('click', () => {
+      if (answeredCorrectly) return;
       const i = parseInt(btn.dataset.opt, 10);
+
+      // Count every click on an option as a trial
+      state.crash.attempts[topic.id] = (state.crash.attempts[topic.id] || 0) + 1;
+      scheduleSave();
+
       if (i === topic.quiz.correct){
+        answeredCorrectly = true;
         btn.classList.add('correct');
         fb.className = 'check-feedback show ok';
         fb.textContent = '✓ Correct — ' + topic.quiz.why;
@@ -1111,14 +1191,18 @@ function renderCrash(host){
           state.crash.done.push(topic.id);
           scheduleSave();
         }
+        // Disable all option buttons once solved
+        host.querySelectorAll('[data-opt]').forEach(b => b.disabled = true);
         nextBtn.disabled = false;
         nextBtn.textContent = crashIndex < CRASH.length - 1 ? 'Next topic →' : 'Proceed to workstation specifications →';
         renderRail();
       } else {
         btn.classList.add('wrong');
+        btn.disabled = true;
         fb.className = 'check-feedback show no';
         fb.textContent = 'Not quite — review the material above and try again.';
       }
+      refreshTrialPill();
     });
   });
 
@@ -1169,7 +1253,7 @@ function renderBuild(host, profile){
         <div class="field" style="margin-top:12px">
           <label>Technical justification <span class="req">*</span></label>
           <textarea rows="3" data-build="${profile.id}" data-comp="${c.key}" data-prop="justification"
-                    placeholder="Provide a technical rationale for this selection for ${profile.name}. Reference socket compatibility, memory bandwidth, storage interface, ports, or budget considerations as appropriate.">${escapeHTML(entry.justification)}</textarea>
+                    placeholder="Provide a technical rationale for this selection for ${escapeHTML(profile.name)}. Reference socket compatibility, memory bandwidth, storage interface, ports, or budget considerations as appropriate.">${escapeHTML(entry.justification)}</textarea>
         </div>
       </div>
     `;
@@ -1186,8 +1270,8 @@ function renderBuild(host, profile){
     <div class="ws-head">
       <div class="ws-head__avatar">${profile.emoji}</div>
       <div class="ws-head__meta">
-        <h3>Workstation ${profile.id} — ${profile.name}</h3>
-        <p>${profile.role} · ${profile.need}</p>
+        <h3>Workstation ${profile.id} — ${escapeHTML(profile.name)}<span class="ws-head__id">${escapeHTML(profile.employeeId)}</span></h3>
+        <p>${escapeHTML(profile.role)} · ${escapeHTML(profile.department)} · ${escapeHTML(profile.email)}</p>
       </div>
       <div class="ws-head__budget">
         Indicative allocation
@@ -1262,6 +1346,7 @@ function renderBudgetReview(host){
     return `<tr>
       <td>Workstation ${p.id}</td>
       <td>${escapeHTML(p.name)}</td>
+      <td>${escapeHTML(p.employeeId)}</td>
       <td>${escapeHTML(p.role)}</td>
       <td>${CONFIG.currency}${subtotal.toFixed(2)}</td>
     </tr>`;
@@ -1279,11 +1364,11 @@ function renderBudgetReview(host){
 
       <table class="cost-table">
         <thead>
-          <tr><th>Ref.</th><th>Employee</th><th>Role</th><th style="text-align:right">Subtotal</th></tr>
+          <tr><th>Ref.</th><th>Employee</th><th>Employee ID</th><th>Role</th><th style="text-align:right">Subtotal</th></tr>
         </thead>
         <tbody>
           ${rows}
-          <tr class="total-row"><td colspan="3">Total committed</td><td>${CONFIG.currency}${totals.spent.toFixed(2)}</td></tr>
+          <tr class="total-row"><td colspan="4">Total committed</td><td>${CONFIG.currency}${totals.spent.toFixed(2)}</td></tr>
         </tbody>
       </table>
 
@@ -1521,17 +1606,18 @@ function buildReportHTML(){
   html += `<h2>1. Executive summary</h2>`;
   html += `<p>This proposal specifies three workstations for the Pulse &amp; Pixel team, meeting the distinct requirements of a senior video editor, an accountant and a sales representative working remotely, within a fixed total budget of ${CONFIG.currency}${CONFIG.budget.toFixed(2)}.</p>`;
   html += `<table>
-    <thead><tr><th>Ref.</th><th>Employee</th><th>Role</th><th>Subtotal</th></tr></thead>
+    <thead><tr><th>Ref.</th><th>Employee</th><th>Employee ID</th><th>Department</th><th>Role</th><th>Subtotal</th></tr></thead>
     <tbody>`;
   PROFILES.forEach(p => {
-    html += `<tr><td>${p.id}</td><td>${escapeHTML(p.name)}</td><td>${escapeHTML(p.role)}</td><td>${CONFIG.currency}${t.perProfile[p.id].toFixed(2)}</td></tr>`;
+    html += `<tr><td>${p.id}</td><td>${escapeHTML(p.name)}</td><td>${escapeHTML(p.employeeId)}</td><td>${escapeHTML(p.department)}</td><td>${escapeHTML(p.role)}</td><td>${CONFIG.currency}${t.perProfile[p.id].toFixed(2)}</td></tr>`;
   });
-  html += `<tr class="report-total"><td colspan="3">Total committed</td><td>${CONFIG.currency}${t.spent.toFixed(2)}</td></tr>`;
-  html += `<tr><td colspan="3">Available balance</td><td class="${over?'over':'ok'}">${CONFIG.currency}${t.remaining.toFixed(2)}</td></tr>`;
+  html += `<tr class="report-total"><td colspan="5">Total committed</td><td>${CONFIG.currency}${t.spent.toFixed(2)}</td></tr>`;
+  html += `<tr><td colspan="5">Available balance</td><td class="${over?'over':'ok'}">${CONFIG.currency}${t.remaining.toFixed(2)}</td></tr>`;
   html += `</tbody></table>`;
 
   PROFILES.forEach(p => {
     html += `<h2>2.${p.id} Workstation ${p.id} — ${escapeHTML(p.name)}</h2>`;
+    html += `<p class="emp-line">${escapeHTML(p.employeeId)} · ${escapeHTML(p.department)} · ${escapeHTML(p.email)}</p>`;
     html += `<p><em>${escapeHTML(p.role)} — ${escapeHTML(p.need)}</em></p>`;
 
     COMPONENTS.forEach((c, i) => {
@@ -1571,12 +1657,35 @@ function buildReportHTML(){
     ? 'The specifications currently <strong>exceed the approved budget</strong>. Adjustments are required before purchase.'
     : 'The specifications are <strong>within the approved budget</strong>.'}</p>`;
 
-  html += `<h2>4. Written assessment</h2>`;
-  html += `<h3>4.1 Hardware vs. Software</h3>`;
+  /* ---------- TECHNICAL ASSESSMENT DETAIL (trials) ---------- */
+  html += `<h2>4. Technical assessment detail</h2>`;
+  html += `<p>The following table records the number of attempts taken on each knowledge check in the technical reference section.</p>`;
+  html += `<table>
+    <thead><tr><th>Concept</th><th>Status</th><th>Attempts</th></tr></thead>
+    <tbody>`;
+  let totalTrials = 0;
+  CRASH.forEach(c => {
+    const done = state.crash.done.includes(c.id);
+    const trials = state.crash.attempts[c.id] || 0;
+    totalTrials += trials;
+    let cls = '';
+    if (done && trials === 1) cls = 'perfect';
+    else if (trials >= 3) cls = 'high';
+    html += `<tr>
+      <td>${escapeHTML(c.title)}</td>
+      <td>${done ? 'Completed' : 'Not completed'}</td>
+      <td><span class="trial-tag ${cls}">${trials === 0 ? '—' : (trials === 1 ? '1 attempt' : trials + ' attempts')}</span></td>
+    </tr>`;
+  });
+  html += `<tr class="report-total"><td colspan="2">Total attempts across all concepts</td><td>${totalTrials}</td></tr>`;
+  html += `</tbody></table>`;
+
+  html += `<h2>5. Written assessment</h2>`;
+  html += `<h3>5.1 Hardware vs. Software</h3>`;
   html += `<div class="justify">${escapeHTML(state.reflection.hwsw) || '<em>(not answered)</em>'}</div>`;
-  html += `<h3>4.2 Internal connectors and ports</h3>`;
+  html += `<h3>5.2 Internal connectors and ports</h3>`;
   html += `<div class="justify">${escapeHTML(state.reflection.ports) || '<em>(not answered)</em>'}</div>`;
-  html += `<h3>4.3 Budget strategy and final reflection</h3>`;
+  html += `<h3>5.3 Budget strategy and final reflection</h3>`;
   html += `<div class="justify">${escapeHTML(state.reflection.strategy) || '<em>(not answered)</em>'}</div>`;
 
   html += `<div class="signature">
@@ -1646,6 +1755,9 @@ function escapeAttr(str){ return escapeHTML(str); }
    INIT
    ============================================================ */
 function init(){
+  // Safety: ensure attempts object exists for states loaded from older versions
+  if (!state.crash.attempts) state.crash.attempts = {};
+
   updateBudget();
   renderRail();
   renderStep();
