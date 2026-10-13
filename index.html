@@ -10,7 +10,7 @@
 
 <style>
 /* ============================================================
-   DESIGN TOKENS — corporate palette
+   DESIGN TOKENS
    ============================================================ */
 :root{
   --navy:#0a2540;
@@ -56,9 +56,6 @@ a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 button{font-family:inherit}
 
-/* ============================================================
-   SHELL
-   ============================================================ */
 .shell{max-width:1200px;margin:0 auto;padding:0 24px}
 @media(max-width:640px){.shell{padding:0 16px}}
 
@@ -155,9 +152,6 @@ button{font-family:inherit}
 .layout{display:grid;grid-template-columns:260px 1fr;gap:32px;padding:32px 0 60px;align-items:start}
 @media(max-width:920px){.layout{grid-template-columns:1fr;gap:20px}}
 
-/* ============================================================
-   SIDEBAR
-   ============================================================ */
 .rail{
   position:sticky;top:96px;
   background:#fff;border:1px solid var(--slate-200);border-radius:var(--radius);
@@ -192,13 +186,13 @@ button{font-family:inherit}
 .rail-item.done .rail-item__dot{background:var(--ok);color:#fff;border-color:transparent}
 
 /* ============================================================
-   CONTENT CARDS
+   CARDS
    ============================================================ */
 .content{min-width:0}
 .card{
   background:#fff;border:1px solid var(--slate-200);border-radius:var(--radius);
   padding:32px 34px;box-shadow:var(--shadow);margin-bottom:20px;
-  animation:fade .3s ease;
+  animation:fade .3s ease;position:relative;
 }
 @media(max-width:640px){.card{padding:24px 20px}}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -232,7 +226,59 @@ button{font-family:inherit}
 .callout--info .callout__icon{background:var(--accent)}
 
 /* ============================================================
-   DOCUMENT HEADER
+   VALIDATION BANNER + ERROR STATES
+   ============================================================ */
+.validation-banner{
+  display:flex;gap:14px;padding:14px 16px;border-radius:var(--radius-sm);
+  border-left:3px solid var(--danger);background:var(--danger-soft);
+  margin:0 0 22px;
+}
+.validation-banner__icon{
+  width:22px;height:22px;flex-shrink:0;border-radius:4px;display:grid;place-items:center;
+  background:var(--danger);color:#fff;font-weight:800;font-size:.78rem;
+}
+.validation-banner strong{display:block;margin-bottom:3px;font-size:.9rem;color:var(--danger)}
+.validation-banner p{margin:0;font-size:.85rem;color:var(--slate-600);line-height:1.55}
+
+.field--error input,
+.field--error textarea{
+  border-color:var(--danger)!important;
+  background:#fffbfb;
+}
+.field--error input:focus,
+.field--error textarea:focus{
+  box-shadow:0 0 0 3px rgba(185,28,28,.12)!important;
+  border-color:var(--danger)!important;
+}
+.field--error > label{color:var(--danger)}
+.field-error-msg{
+  font-size:.75rem;
+  color:var(--danger);
+  font-weight:600;
+  margin-top:3px;
+  display:flex;align-items:center;gap:5px;
+}
+.field-error-msg::before{
+  content:"!";
+  width:14px;height:14px;border-radius:50%;
+  background:var(--danger);color:#fff;
+  display:grid;place-items:center;
+  font-size:.65rem;font-weight:800;
+  flex-shrink:0;
+}
+.comp-block--error{
+  border-color:var(--danger);
+  background:#fffbfb;
+}
+.compat--error{
+  border-color:var(--danger);
+  background:var(--danger-soft);
+}
+.compat--error > h4{color:var(--danger)}
+.compat--error .field-error-msg{margin-top:10px}
+
+/* ============================================================
+   DOC HEADER
    ============================================================ */
 .doc-header{
   background:var(--navy);color:#fff;border-radius:var(--radius);
@@ -257,7 +303,7 @@ button{font-family:inherit}
 .doc-header__meta div strong{font-size:.95rem;font-weight:600}
 
 /* ============================================================
-   STAKEHOLDER CARDS
+   PROFILE CARDS (stakeholders)
    ============================================================ */
 .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:8px}
 .profile-card{
@@ -268,9 +314,11 @@ button{font-family:inherit}
 .profile-card:hover{border-color:var(--slate-400);box-shadow:var(--shadow)}
 .profile-card__avatar{
   width:44px;height:44px;border-radius:6px;display:grid;place-items:center;
-  font-size:1.15rem;margin-bottom:14px;
+  margin-bottom:14px;
   background:var(--slate-100);border:1px solid var(--slate-200);
+  color:var(--slate-700);
 }
+.profile-card__avatar svg{width:22px;height:22px}
 .profile-card h4{font-size:.98rem;margin-bottom:2px;font-weight:700}
 .profile-card .role{font-size:.78rem;color:var(--slate-500);margin-bottom:10px;font-weight:500}
 .profile-card .emp-meta{
@@ -381,9 +429,10 @@ button{font-family:inherit}
 }
 .ws-head__avatar{
   width:52px;height:52px;border-radius:6px;display:grid;place-items:center;
-  font-size:1.3rem;flex-shrink:0;
+  flex-shrink:0;
   background:var(--navy);color:#fff;
 }
+.ws-head__avatar svg{width:26px;height:26px}
 .ws-head__meta{min-width:0;flex:1}
 .ws-head__meta h3{margin:0 0 3px;font-size:1.15rem}
 .ws-head__meta p{margin:0;font-size:.82rem;color:var(--slate-500)}
@@ -427,6 +476,7 @@ button{font-family:inherit}
 .compat{
   margin-top:22px;padding:18px 20px;border-radius:var(--radius);
   background:var(--slate-50);border:1px solid var(--slate-200);
+  transition:border-color .15s,background .15s;
 }
 .compat h4{
   margin:0 0 12px;font-size:.88rem;display:flex;align-items:center;gap:10px;
@@ -466,6 +516,8 @@ button{font-family:inherit}
   margin-bottom:14px;background:#fff;transition:border-color .15s;
 }
 .assess-q:focus-within{border-color:var(--navy)}
+.assess-q--error{border-color:var(--danger);background:#fffbfb}
+.assess-q--error .assess-q__label{color:var(--danger)}
 .assess-q__label{
   font-weight:700;font-size:.92rem;margin-bottom:6px;display:flex;gap:12px;align-items:flex-start;
   color:var(--slate-900);
@@ -474,6 +526,7 @@ button{font-family:inherit}
   width:22px;height:22px;border-radius:4px;background:var(--navy);color:#fff;
   display:grid;place-items:center;font-size:.72rem;font-weight:800;flex-shrink:0;
 }
+.assess-q--error .assess-q__num{background:var(--danger)}
 .assess-q__hint{font-size:.82rem;color:var(--slate-500);margin:0 0 12px 34px;line-height:1.55}
 
 /* ============================================================
@@ -573,9 +626,6 @@ button{font-family:inherit}
 .site-footer p{margin:0 0 4px}
 .site-footer .small{font-size:.75rem;opacity:.75}
 
-/* ============================================================
-   UTILITIES
-   ============================================================ */
 .hidden{display:none !important}
 .step-actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap;
   padding-top:22px;border-top:1px solid var(--slate-100)}
@@ -669,7 +719,14 @@ const CONFIG = {
   projectRef: 'PP-IT-2025-001'
 };
 
-/* ---------- EMPLOYEE PROFILES (with corporate identity) ---------- */
+/* ---------- SVG ICONS (professional, role-related) ---------- */
+const ICONS = {
+  video: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>`,
+  calculator: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>`,
+  briefcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>`
+};
+
+/* ---------- EMPLOYEE PROFILES ---------- */
 const PROFILES = [
   {
     id: 'A',
@@ -678,7 +735,7 @@ const PROFILES = [
     department: 'Creative Production',
     email: 'maya.rodriguez@pulsepixel.eu',
     role: 'Senior Video Editor',
-    emoji: '🎬',
+    icon: 'video',
     need: 'Cuts 4K footage daily. Requires maximum processing power and RAM to scrub and render timelines without interruptions.',
     tag: 'High performance',
     tagClass: 'tag--must',
@@ -697,7 +754,7 @@ const PROFILES = [
     department: 'Finance & Accounting',
     email: 'david.chen@pulsepixel.eu',
     role: 'Accountant',
-    emoji: '📊',
+    icon: 'calculator',
     need: 'Runs spreadsheets, email and accounting software. Does not require gaming performance — prioritises reliability and cost efficiency.',
     tag: 'Cost efficiency',
     tagClass: 'tag--save',
@@ -716,7 +773,7 @@ const PROFILES = [
     department: 'Client Sales — EMEA',
     email: 'aisha.karim@pulsepixel.eu',
     role: 'Sales Representative / Digital Nomad',
-    emoji: '🌍',
+    icon: 'briefcase',
     need: 'Works from cafés, airports and client offices. Requires portability and large external storage capacity for client media.',
     tag: 'Portability + storage',
     tagClass: 'tag--mob',
@@ -729,6 +786,8 @@ const PROFILES = [
     ]
   }
 ];
+
+function profileIcon(p){ return ICONS[p.icon] || ICONS.briefcase; }
 
 /* ---------- COMPONENT DEFINITIONS ---------- */
 const COMPONENTS = [
@@ -846,7 +905,7 @@ function defaultState(){
     student: { name:'', class:'', date:'' },
     builds: {},
     compat: {},
-    crash: { done: [], attempts: {} },   /* attempts: { [topicId]: number } */
+    crash: { done: [], attempts: {} },
     reflection: { hwsw:'', ports:'', strategy:'' }
   };
   PROFILES.forEach(p => {
@@ -903,6 +962,113 @@ function scheduleSave(){
 }
 
 /* ============================================================
+   VALIDATION HELPERS
+   ============================================================ */
+function isFilled(v){
+  return v !== undefined && v !== null && String(v).trim() !== '';
+}
+
+function appendErrorMsg(container, message){
+  const existing = container.querySelector(':scope > .field-error-msg');
+  if (existing) existing.remove();
+  const msg = document.createElement('div');
+  msg.className = 'field-error-msg';
+  msg.textContent = message;
+  container.appendChild(msg);
+}
+
+function clearBuildErrors(host){
+  host.querySelectorAll('.field--error').forEach(el => el.classList.remove('field--error'));
+  host.querySelectorAll('.comp-block--error').forEach(el => el.classList.remove('comp-block--error'));
+  host.querySelectorAll('.compat--error').forEach(el => el.classList.remove('compat--error'));
+  host.querySelectorAll('.assess-q--error').forEach(el => el.classList.remove('assess-q--error'));
+  host.querySelectorAll('.field-error-msg').forEach(el => el.remove());
+  host.querySelectorAll('.validation-banner').forEach(el => el.remove());
+}
+
+function showValidationBanner(host, message){
+  const card = host.querySelector('.card');
+  if (!card) return;
+  const banner = document.createElement('div');
+  banner.className = 'validation-banner';
+  banner.innerHTML = `<span class="validation-banner__icon">!</span><div><strong>Cannot continue — incomplete entries</strong><p>${message}</p></div>`;
+  card.insertBefore(banner, card.firstChild);
+}
+
+/* Validates the current build. Marks each invalid field and returns the error count. */
+function validateBuild(host, profileId){
+  clearBuildErrors(host);
+  let errorCount = 0;
+  const b = state.builds[profileId];
+
+  COMPONENTS.forEach(c => {
+    const e = b[c.key] || {};
+    const compBlock = host.querySelector(`[data-comp-block="${c.key}"]`);
+    if (!compBlock) return;
+    let compHasError = false;
+
+    const checks = [
+      { prop:'name',          msg:'Part reference is required.' },
+      { prop:'price',         msg:'Price is required.' },
+      { prop:'justification', msg:'Technical justification is required.' }
+    ];
+
+    checks.forEach(({prop, msg}) => {
+      if (!isFilled(e[prop])){
+        const input = compBlock.querySelector(`[data-build="${profileId}"][data-comp="${c.key}"][data-prop="${prop}"]`);
+        if (input){
+          const field = input.closest('.field');
+          if (field){
+            field.classList.add('field--error');
+            appendErrorMsg(field, msg);
+          }
+        }
+        compHasError = true;
+        errorCount++;
+      }
+    });
+
+    if (compHasError) compBlock.classList.add('comp-block--error');
+  });
+
+  const compat = state.compat[profileId];
+  if (!compat || !compat.every(Boolean)){
+    const compatBlock = host.querySelector('.compat');
+    if (compatBlock){
+      compatBlock.classList.add('compat--error');
+      appendErrorMsg(compatBlock, 'You must verify every compatibility check before continuing.');
+    }
+    errorCount++;
+  }
+
+  return errorCount;
+}
+
+/* Validates the written assessment. Marks each empty textarea and returns the error count. */
+function validateReflection(host){
+  clearBuildErrors(host);
+  let errorCount = 0;
+
+  ['hwsw','ports','strategy'].forEach(key => {
+    if (!isFilled(state.reflection[key])){
+      const ta = host.querySelector(`[data-ref="${key}"]`);
+      if (ta){
+        const field = ta.closest('.field');
+        const q = ta.closest('.assess-q');
+        if (field){
+          field.classList.add('field--error');
+          appendErrorMsg(field, 'This response is required.');
+        }
+        if (q) q.classList.add('assess-q--error');
+      }
+      errorCount++;
+    }
+  });
+
+  return errorCount;
+}
+
+/* ============================================================
    STEP DEFINITIONS
    ============================================================ */
 const STEPS = [
@@ -950,17 +1116,19 @@ function isStepComplete(id){
   if (id === 'budget' || id === 'report') return true;
   if (id === 'reflection'){
     const r = state.reflection;
-    return r.hwsw.trim() && r.ports.trim() && r.strategy.trim();
+    return isFilled(r.hwsw) && isFilled(r.ports) && isFilled(r.strategy);
   }
   if (id.startsWith('build-')){
     const pid = id.split('-')[1];
     const prof = PROFILES.find(p => p.id === pid);
     if (!prof) return false;
     const b = state.builds[pid];
-    return COMPONENTS.every(c => {
+    const allComponents = COMPONENTS.every(c => {
       const e = b[c.key] || {};
-      return (e.name && e.justification);
+      return isFilled(e.name) && isFilled(e.price) && isFilled(e.justification);
     });
+    const allCompat = state.compat[pid].every(Boolean);
+    return allComponents && allCompat;
   }
   return false;
 }
@@ -1047,7 +1215,7 @@ function renderBriefing(host){
 function renderTeam(host){
   const cards = PROFILES.map(p => `
     <div class="profile-card">
-      <div class="profile-card__avatar">${p.emoji}</div>
+      <div class="profile-card__avatar">${profileIcon(p)}</div>
       <h4>${escapeHTML(p.name)}</h4>
       <div class="role">${escapeHTML(p.role)}</div>
       <div class="emp-meta">
@@ -1086,7 +1254,7 @@ function renderTeam(host){
 }
 
 /* ============================================================
-   STEP: TECHNICAL REFERENCE (with trial tracking)
+   STEP: TECHNICAL REFERENCE
    ============================================================ */
 let crashIndex = 0;
 
@@ -1162,7 +1330,6 @@ function renderCrash(host){
     }
   }
 
-  // If already done, show the correct answer as resolved
   if (wasDone){
     host.querySelectorAll('[data-opt]').forEach(btn => {
       if (parseInt(btn.dataset.opt, 10) === topic.quiz.correct){
@@ -1178,7 +1345,6 @@ function renderCrash(host){
       if (answeredCorrectly) return;
       const i = parseInt(btn.dataset.opt, 10);
 
-      // Count every click on an option as a trial
       state.crash.attempts[topic.id] = (state.crash.attempts[topic.id] || 0) + 1;
       scheduleSave();
 
@@ -1191,7 +1357,6 @@ function renderCrash(host){
           state.crash.done.push(topic.id);
           scheduleSave();
         }
-        // Disable all option buttons once solved
         host.querySelectorAll('[data-opt]').forEach(b => b.disabled = true);
         nextBtn.disabled = false;
         nextBtn.textContent = crashIndex < CRASH.length - 1 ? 'Next topic →' : 'Proceed to workstation specifications →';
@@ -1231,19 +1396,19 @@ function renderBuild(host, profile){
   const compHTML = COMPONENTS.map((c, idx) => {
     const entry = b[c.key] || { name:'', price:'', justification:'' };
     return `
-      <div class="comp-block">
+      <div class="comp-block" data-comp-block="${c.key}">
         <div class="comp-block__head">
           <h4 class="comp-block__title"><span class="num">${String(idx+1).padStart(2,'0')}</span>${c.label}</h4>
           <span class="comp-block__hint">${c.hint}</span>
         </div>
         <div class="row row--2">
           <div class="field">
-            <label>Part reference — name or URL</label>
+            <label>Part reference — name or URL <span class="req">*</span></label>
             <input type="text" data-build="${profile.id}" data-comp="${c.key}" data-prop="name"
                    value="${escapeAttr(entry.name)}" placeholder="Product name or link to vendor page" />
           </div>
           <div class="field">
-            <label>Unit price</label>
+            <label>Unit price <span class="req">*</span></label>
             <div class="price-wrap">
               <input type="number" min="0" step="0.01" data-build="${profile.id}" data-comp="${c.key}" data-prop="price"
                      value="${escapeAttr(entry.price)}" placeholder="0.00" />
@@ -1268,7 +1433,7 @@ function renderBuild(host, profile){
 
   host.innerHTML = `
     <div class="ws-head">
-      <div class="ws-head__avatar">${profile.emoji}</div>
+      <div class="ws-head__avatar">${profileIcon(profile)}</div>
       <div class="ws-head__meta">
         <h3>Workstation ${profile.id} — ${escapeHTML(profile.name)}<span class="ws-head__id">${escapeHTML(profile.employeeId)}</span></h3>
         <p>${escapeHTML(profile.role)} · ${escapeHTML(profile.department)} · ${escapeHTML(profile.email)}</p>
@@ -1282,7 +1447,7 @@ function renderBuild(host, profile){
     <div class="card">
       <div class="card__eyebrow">04.${profile.id} / Workstation ${profile.id} Specification</div>
       <h2 class="card__title">Component specification</h2>
-      <p class="card__hint">Research real components from a real vendor. For each item, record the product reference, the price and a technical justification.</p>
+      <p class="card__hint">Research real components from a real vendor. For each item, record the product reference, the price and a technical justification. <strong>All fields are required before you can continue.</strong></p>
 
       ${compHTML}
 
@@ -1300,12 +1465,30 @@ function renderBuild(host, profile){
     </div>
   `;
 
+  /* --- Live input handling --- */
   host.querySelectorAll('input[data-build], textarea[data-build]').forEach(el => {
     el.addEventListener('input', () => {
       const pid = el.dataset.build;
       const ck = el.dataset.comp;
       const prop = el.dataset.prop;
       state.builds[pid][ck][prop] = el.value;
+
+      // Clear error styling as the user fills the field
+      const field = el.closest('.field');
+      if (field && field.classList.contains('field--error') && isFilled(el.value)){
+        field.classList.remove('field--error');
+        const msg = field.querySelector(':scope > .field-error-msg');
+        if (msg) msg.remove();
+        const compBlock = el.closest('.comp-block');
+        if (compBlock && !compBlock.querySelector('.field--error')){
+          compBlock.classList.remove('comp-block--error');
+        }
+      }
+
+      // Clear the top-level banner once the build becomes valid
+      const banner = host.querySelector('.validation-banner');
+      if (banner && validateSilently(pid)) banner.remove();
+
       scheduleSave();
       updateBudget();
       renderRail();
@@ -1318,21 +1501,50 @@ function renderBuild(host, profile){
       const idx = parseInt(el.dataset.idx, 10);
       state.compat[pid][idx] = el.checked;
       el.parentElement.classList.toggle('checked', el.checked);
+
+      const compatBlock = host.querySelector('.compat');
+      if (compatBlock && state.compat[pid].every(Boolean)){
+        compatBlock.classList.remove('compat--error');
+        const msg = compatBlock.querySelector(':scope > .field-error-msg');
+        if (msg) msg.remove();
+        const banner = host.querySelector('.validation-banner');
+        if (banner && validateSilently(pid)) banner.remove();
+      }
+
       scheduleSave();
       renderRail();
     });
   });
 
+  /* --- Navigation with validation --- */
   host.querySelector('[data-prev]').addEventListener('click', () => {
     const idx = PROFILES.findIndex(p => p.id === profile.id);
     if (idx > 0) goToStep('build-' + PROFILES[idx-1].id);
     else goToStep('crash');
   });
+
   host.querySelector('[data-next]').addEventListener('click', () => {
+    const errors = validateBuild(host, profile.id);
+    if (errors > 0){
+      showValidationBanner(host, `You must complete every component (${errors} field${errors===1?'':'s'} pending) and verify all compatibility checks before continuing.`);
+      const firstErr = host.querySelector('.field--error, .compat--error');
+      if (firstErr) firstErr.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
     const idx = PROFILES.findIndex(p => p.id === profile.id);
     if (idx < PROFILES.length - 1) goToStep('build-' + PROFILES[idx+1].id);
     else goToStep('budget');
   });
+}
+
+/* Silent re-check used to remove the banner when the build becomes valid. */
+function validateSilently(profileId){
+  const b = state.builds[profileId];
+  const okComponents = COMPONENTS.every(c => {
+    const e = b[c.key] || {};
+    return isFilled(e.name) && isFilled(e.price) && isFilled(e.justification);
+  });
+  return okComponents && state.compat[profileId].every(Boolean);
 }
 
 /* ============================================================
@@ -1411,7 +1623,7 @@ function renderReflection(host){
     <div class="card">
       <div class="card__eyebrow">06 / Written Assessment</div>
       <h2 class="card__title">Theory and reflection</h2>
-      <p class="card__hint">The following responses are compulsory and form part of the assessment. Write in full sentences and use technical vocabulary.</p>
+      <p class="card__hint">The following responses are compulsory and form part of the assessment. Write in full sentences and use technical vocabulary. <strong>All three responses are required before you can continue.</strong></p>
 
       <div class="assess-q">
         <div class="assess-q__label"><span class="assess-q__num">1</span> Hardware vs. Software <span class="req">*</span></div>
@@ -1447,13 +1659,40 @@ function renderReflection(host){
   host.querySelectorAll('textarea[data-ref]').forEach(el => {
     el.addEventListener('input', () => {
       state.reflection[el.dataset.ref] = el.value;
+
+      // Clear error styling on the field + question wrapper
+      const field = el.closest('.field');
+      const q = el.closest('.assess-q');
+      if (field && field.classList.contains('field--error') && isFilled(el.value)){
+        field.classList.remove('field--error');
+        const msg = field.querySelector(':scope > .field-error-msg');
+        if (msg) msg.remove();
+        if (q) q.classList.remove('assess-q--error');
+      }
+
+      // Remove banner once everything is filled
+      const banner = host.querySelector('.validation-banner');
+      if (banner){
+        const allFilled = ['hwsw','ports','strategy'].every(k => isFilled(state.reflection[k]));
+        if (allFilled) banner.remove();
+      }
+
       scheduleSave();
       renderRail();
     });
   });
 
   host.querySelector('[data-prev]').addEventListener('click', () => goToStep('budget'));
-  host.querySelector('[data-next]').addEventListener('click', () => goToStep('report'));
+  host.querySelector('[data-next]').addEventListener('click', () => {
+    const errors = validateReflection(host);
+    if (errors > 0){
+      showValidationBanner(host, `You must provide a response to all three questions (${errors} response${errors===1?'':'s'} missing) before continuing.`);
+      const firstErr = host.querySelector('.assess-q--error');
+      if (firstErr) firstErr.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+    goToStep('report');
+  });
 }
 
 /* ============================================================
@@ -1657,7 +1896,6 @@ function buildReportHTML(){
     ? 'The specifications currently <strong>exceed the approved budget</strong>. Adjustments are required before purchase.'
     : 'The specifications are <strong>within the approved budget</strong>.'}</p>`;
 
-  /* ---------- TECHNICAL ASSESSMENT DETAIL (trials) ---------- */
   html += `<h2>4. Technical assessment detail</h2>`;
   html += `<p>The following table records the number of attempts taken on each knowledge check in the technical reference section.</p>`;
   html += `<table>
@@ -1755,7 +1993,6 @@ function escapeAttr(str){ return escapeHTML(str); }
    INIT
    ============================================================ */
 function init(){
-  // Safety: ensure attempts object exists for states loaded from older versions
   if (!state.crash.attempts) state.crash.attempts = {};
 
   updateBudget();
