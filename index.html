@@ -1,251 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TechNova · Zero Budget Mission</title>
-  <meta name="description" content="Self-guided Computer Science assignment: build three workstations on a fixed €2,500 budget." />
-
-  <!-- Fonts (optional, falls back to system fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pulse &amp; Pixel · Zero Budget Mission</title>
+<meta name="description" content="Interactive hardware procurement simulation for 10th grade Computer Science.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ============================================================
-       SITE HEADER
-       ============================================================ -->
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <div class="brand">
-        <div class="brand__mark" aria-hidden="true">TN</div>
-        <div>
-          <div class="brand__name">TechNova</div>
-          <div class="brand__sub">IT Purchasing Department</div>
-        </div>
-      </div>
-      <div class="header-badge">Zero Budget Mission</div>
+<!-- ============================================================
+     TOP BAR — the agency identity
+     ============================================================ -->
+<header class="topbar">
+  <div class="shell topbar__inner">
+    <a class="brand" href="#" aria-label="Pulse &amp; Pixel">
+      <span class="brand__mark">P&amp;P</span>
+      <span class="brand__text">
+        <strong>Pulse &amp; Pixel</strong>
+        <small>Creative Marketing Agency</small>
+      </span>
+    </a>
+    <span class="topbar__badge">Zero Budget Mission</span>
+    <span class="topbar__role">You are the new IT Purchasing Manager</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     STICKY BUDGET STRIP — always visible
+     ============================================================ -->
+<div class="budget-strip" id="budgetStrip">
+  <div class="shell budget-strip__inner">
+    <div class="budget-metrics">
+      <div class="bm"><span>Total budget</span><strong id="budgetTotal">€2,500.00</strong></div>
+      <div class="bm"><span>Spent</span><strong id="spentTotal">€0.00</strong></div>
+      <div class="bm bm--remaining"><span>Remaining</span><strong id="remainingTotal">€2,500.00</strong></div>
     </div>
-  </header>
-
-  <!-- ============================================================
-       GLOBAL BUDGET TRACKER (sticky, always visible)
-       ============================================================ -->
-  <div class="budget-bar" id="budgetBar">
-    <div class="container budget-bar__inner">
-      <div class="budget-top">
-        <div class="metrics">
-          <div class="metric">
-            <span class="metric__label">Total budget</span>
-            <span class="metric__value" id="budgetTotal">€2,500.00</span>
-          </div>
-          <div class="metric">
-            <span class="metric__label">Spent</span>
-            <span class="metric__value" id="spentTotal">€0.00</span>
-          </div>
-          <div class="metric">
-            <span class="metric__label">Remaining</span>
-            <span class="metric__value" id="remainingTotal">€2,500.00</span>
-          </div>
-        </div>
-
-        <div class="budget-actions">
-          <span class="save-state" id="saveState">Autosave on</span>
-          <button type="button" class="btn btn--ghost" id="resetBtn">Reset</button>
-          <button type="button" class="btn btn--primary" id="generateBtn">Generate Final Report</button>
-        </div>
-      </div>
-
-      <div class="progress" aria-hidden="true">
-        <div class="progress__fill" id="progressFill"></div>
-      </div>
-
-      <p class="budget-note" id="budgetNote">Start researching parts — your remaining budget will update automatically.</p>
+    <div class="budget-tools">
+      <span class="save-pill" id="saveState"><i></i> Saved</span>
+      <button type="button" class="btn btn--ghost" id="resetBtn">Reset</button>
+      <button type="button" class="btn btn--primary" id="generateBtn">Generate Final Report</button>
     </div>
   </div>
+  <div class="budget-progress"><div class="budget-progress__fill" id="progressFill"></div></div>
+  <p class="budget-note" id="budgetNote">Start researching parts — your remaining budget updates automatically.</p>
+</div>
 
-  <!-- ============================================================
-       MAIN CONTENT
-       ============================================================ -->
-  <main class="container">
-
-    <!-- ---------- HERO / NARRATIVE ---------- -->
-    <section class="hero">
-      <p class="eyebrow">Self-guided assignment · 10th Grade Computer Science</p>
-      <h1 class="hero__title">TechNova: Zero Budget Mission</h1>
-
-      <p class="lede">
-        Congratulations — you have just been hired as the new <strong>IT Purchasing Manager</strong>
-        at TechNova, a small but ambitious creative agency.
-      </p>
-
-      <p>
-        Three employees have been working on machines that are now painfully slow, and the company
-        has finally approved a hardware refresh. There is only one problem: the Finance Director has
-        frozen the budget at <strong>€2,500 for all three workstations</strong> — not per workstation,
-        <em>in total</em>. And she wants a written technical justification for every single euro you spend.
-      </p>
-
-      <p>
-        Your job is to research <strong>real components from real online stores</strong>, put together
-        three builds, verify that every part is <strong>compatible</strong>, and defend your decisions
-        like a professional. A wrong socket, the wrong RAM generation or an undersized power supply will
-        mean a machine that simply does not turn on — and a very unhappy colleague.
-      </p>
-
-      <div class="callout callout--budget">
-        <span class="callout__icon" aria-hidden="true">€</span>
-        <div>
-          <strong>Hard limit: €2,500.00 total for all three builds.</strong>
-          <p>Going over budget is a failed mission. Leaving money unspent is also a problem — your
-             colleagues need machines that actually do their job.</p>
-        </div>
-      </div>
-
-      <h2 class="section-title">Mission objectives</h2>
-      <ul class="checklist">
-        <li>Research <strong>real parts</strong> from real retailers and paste the product name and/or link.</li>
-        <li>Guarantee <strong>hardware compatibility</strong>: CPU socket ↔ motherboard socket, RAM generation,
-            storage interface, power and form factor.</li>
-        <li>Keep the <strong>combined total at or under €2,500</strong>.</li>
-        <li>Justify every choice <strong>technically</strong> — "it was cheap" is not a justification.</li>
-        <li>Produce the <strong>final PDF report</strong> and upload it to Microsoft Teams.</li>
-      </ul>
-
-      <h2 class="section-title">How to work through this page</h2>
-      <ol class="steps">
-        <li>Open a new browser tab with an online computer store and search for real components.</li>
-        <li>For each profile, write the part name/link, its price, and a short technical justification.</li>
-        <li>Complete the <em>Compatibility check</em> box at the end of every profile.</li>
-        <li>Watch the <strong>budget bar at the top</strong>: it turns red the moment you exceed €2,500.</li>
-        <li>Fill in the <strong>Reflection</strong> section at the bottom.</li>
-        <li>Click <strong>“Generate Final Report”</strong>, check the preview and download your PDF.</li>
-      </ol>
-
-      <div class="callout callout--info">
-        <span class="callout__icon" aria-hidden="true">i</span>
-        <div>
-          <strong>Your work is saved automatically.</strong>
-          <p>Everything you type is stored in this browser. If you close the tab or reload by accident,
-             your work will still be here when you come back — as long as you use the same computer and browser.</p>
-        </div>
-      </div>
-
-      <h2 class="section-title">Mandatory topics you must cover</h2>
-      <div class="table-wrap">
-        <table class="topic-table">
-          <thead>
-            <tr><th>Topic</th><th>Where you must justify it</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Hardware vs. Software</td><td>Reflection section (final question)</td></tr>
-            <tr><td>Motherboard</td><td>Every profile (A, B and C)</td></tr>
-            <tr><td>Microprocessor (CPU)</td><td>Every profile (A, B and C)</td></tr>
-            <tr><td>Internal connectors and ports</td><td>Peripherals/adapters box + Reflection</td></tr>
-            <tr><td>Memory (RAM)</td><td>Every profile (A, B and C)</td></tr>
-            <tr><td>Internal and external storage units</td><td>Every profile (A, B and C)</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ---------- THE FORM ---------- -->
-    <form id="missionForm" autocomplete="off" novalidate>
-
-      <!-- Student details -->
-      <section class="card">
-        <h2 class="card__title">Student details</h2>
-        <p class="card__hint">These details will appear at the top of your final report.</p>
-        <div class="row row--3">
-          <div class="field">
-            <label for="student_name">Full name</label>
-            <input type="text" id="student_name" data-field placeholder="Your name" />
-          </div>
-          <div class="field">
-            <label for="student_class">Class / group</label>
-            <input type="text" id="student_class" data-field placeholder="e.g. 4º ESO B — Group 3" />
-          </div>
-          <div class="field">
-            <label for="student_date">Date</label>
-            <input type="text" id="student_date" data-field placeholder="dd/mm/yyyy" />
-          </div>
-        </div>
-      </section>
-
-      <!-- Profiles A, B, C are generated by JavaScript -->
-      <div id="profilesContainer"></div>
-
-      <!-- Reflection -->
-      <section class="card">
-        <h2 class="card__title">Reflection &amp; cross-cutting concepts</h2>
-        <p class="card__hint">
-          These answers are compulsory and count towards your grade. Write in full sentences and use
-          technical vocabulary.
-        </p>
-
-        <div class="field">
-          <label for="ref_hwsw">
-            1. Hardware vs. Software <span class="req">*</span>
-          </label>
-          <textarea id="ref_hwsw" data-field rows="4"
-            placeholder="Explain the difference between hardware and software. Then give two concrete examples from your three builds: which parts are hardware, and which software will each employee run on them?"></textarea>
-        </div>
-
-        <div class="field">
-          <label for="ref_ports">
-            2. Internal connectors and ports <span class="req">*</span>
-          </label>
-          <textarea id="ref_ports" data-field rows="4"
-            placeholder="Describe the internal connectors you used (M.2, SATA, 24-pin ATX, 8-pin EPS, fan headers…) and the external ports your builds need (USB-A, USB-C, HDMI, DisplayPort, RJ-45…). Why does the choice of ports matter for each employee?"></textarea>
-        </div>
-
-        <div class="field">
-          <label for="ref_strategy">
-            3. Budget strategy and final reflection <span class="req">*</span>
-          </label>
-          <textarea id="ref_strategy" data-field rows="4"
-            placeholder="How did you decide where to spend more and where to save? What would you change if the budget increased by €500? What was the hardest compatibility problem you solved?"></textarea>
-        </div>
-      </section>
-
-    </form>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>TechNova · Zero Budget Mission — 10th Grade Computer Science assignment.</p>
-      <p class="site-footer__small">Your answers are stored only in your own browser (localStorage). Nothing is uploaded to a server.</p>
+<!-- ============================================================
+     LAYOUT: step rail + step content
+     ============================================================ -->
+<div class="shell layout">
+  <aside class="rail">
+    <div class="rail__head">
+      <span>Mission progress</span>
+      <strong id="railProgressLabel">0%</strong>
     </div>
-  </footer>
+    <div class="rail__bar"><div id="railProgressFill"></div></div>
+    <nav id="stepRail" class="rail__nav" aria-label="Mission steps"></nav>
+  </aside>
 
-  <!-- ============================================================
-       REPORT MODAL (preview + PDF export)
-       ============================================================ -->
-  <div class="report-modal" id="reportModal" hidden role="dialog" aria-modal="true" aria-labelledby="reportModalTitle">
-    <div class="report-modal__toolbar">
-      <div>
-        <strong id="reportModalTitle">Final report preview</strong>
-        <div class="toolbar-hint">Check everything before downloading. This PDF is what you upload to Microsoft Teams.</div>
-      </div>
-      <div class="toolbar-actions">
-        <button type="button" class="btn btn--ghost" id="closeModalBtn">Close</button>
-        <button type="button" class="btn btn--ghost" id="printBtn">Print / Save as PDF</button>
-        <button type="button" class="btn btn--primary" id="downloadPdfBtn">Download PDF</button>
-      </div>
+  <main id="stepContent" class="content"></main>
+</div>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p><strong>Pulse &amp; Pixel</strong> · Zero Budget Mission — 10th Grade Computer Science assignment.</p>
+    <p class="small">Your answers are stored only in this browser (localStorage). Nothing is sent to a server.</p>
+  </div>
+</footer>
+
+<!-- ============================================================
+     REPORT MODAL
+     ============================================================ -->
+<div class="report-modal" id="reportModal" hidden>
+  <div class="report-modal__toolbar">
+    <div class="report-modal__title">
+      <strong>Final report preview</strong>
+      <span>Check everything before downloading — this PDF is what you upload to Microsoft Teams.</span>
     </div>
-    <div class="report-modal__scroll">
-      <!-- The report HTML is injected here -->
-      <div class="report" id="report"></div>
+    <div class="report-modal__actions">
+      <button type="button" class="btn btn--ghost" id="closeModalBtn">Close</button>
+      <button type="button" class="btn btn--ghost" id="printBtn">Print / Save as PDF</button>
+      <button type="button" class="btn btn--primary" id="downloadPdfBtn">Download PDF</button>
     </div>
   </div>
+  <div class="report-modal__scroll">
+    <div class="report" id="report"></div>
+  </div>
+</div>
 
-  <!-- PDF generation library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <!-- Application script -->
-  <script src="app.js"></script>
+<!-- PDF generation library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
